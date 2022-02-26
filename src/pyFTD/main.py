@@ -1,13 +1,20 @@
 import pandas as pd
+import time
 
 # url = "https://www.sec.gov/files/data/fails-deliver-data/cnsfails202201b.zip"
 
-def pull_month(int year, int month):
+def pull_month(year, month):
     if month < 10:
         month = "0" + str(month)
     base_url_a = "https://www.sec.gov/files/data/fails-deliver-data/cnsfails" + str(year) + str(month) + "a.zip"
     base_url_b = "https://www.sec.gov/files/data/fails-deliver-data/cnsfails" + str(year) + str(month) + "b.zip"
-    ftds_a = pd.read_csv(url, compression='zip', delimiter='|')
+    ftds_a = pd.read_csv(base_url_a, compression='zip', delimiter='|', on_bad_lines='warn')
+    ftds_a.dropna(axis = 0, how = 'any', inplace = True)
+    time.sleep(10)
+    ftds_b = pd.read_csv(base_url_b, compression='zip', delimiter='|', on_bad_lines='warn')
+    ftds_b.dropna(axis = 0, how = 'any', inplace = True)
+    month_data = pd.concat([ftds_a, ftds_b], axis = 0).reset_index(drop=True)
+    return(month_data)
     
 
 
