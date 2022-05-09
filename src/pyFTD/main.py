@@ -4,6 +4,12 @@ import time
 # url = "https://www.sec.gov/files/data/fails-deliver-data/cnsfails202201b.zip"
 
 def pull_month(year, month):
+    """Retrive a month of failure to deliver data.
+
+    Keyword arguments:
+    year -- integer year (default none)
+    month -- integer month, with no leading 0 (default none)
+    """
     if month < 10:
         month = "0" + str(month)
     base_url_a = "https://www.sec.gov/files/data/fails-deliver-data/cnsfails" + str(year) + str(month) + "a.zip"
