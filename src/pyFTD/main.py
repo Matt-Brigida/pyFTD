@@ -1,7 +1,10 @@
 import pandas as pd
 import time
 
-# url = "https://www.sec.gov/files/data/fails-deliver-data/cnsfails202201b.zip"
+# Example URL:
+# "https://www.sec.gov/files/data/fails-deliver-data/cnsfails202201b.zip"
+# is for the second half of January 2022.  The first half would be 202201a
+# Data are available from the SEC for the interval
 
 def pull_month(year, month):
     """Retrive a month of failure to deliver data.
